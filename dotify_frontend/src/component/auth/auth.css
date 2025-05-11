@@ -1,0 +1,187 @@
+/* Base container styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff5f0; /* Soft peachy background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5a4d41; /* Warm brown text */
+  }
+  
+  /* Container styling */
+  .auth-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255, 152, 0, 0.12);
+    border: 1px solid #ffe0b2;
+  }
+  
+  /* Typography */
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #e65100; /* Deep orange */
+  }
+  
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  /* Form inputs */
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="file"] {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.2rem;
+    border: 2px solid #ffccbc; /* Light peach border */
+    border-radius: 10px;
+    background-color: #fff9f5;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #5a4d41;
+  }
+  
+  input:focus {
+    border-color: #ff8a65; /* Medium peach */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 138, 101, 0.2);
+  }
+  
+  /* Labels */
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #e65100; /* Deep orange */
+  }
+  
+  /* Buttons */
+  button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ffa726, #fb8c00); /* Peach gradient */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(251, 140, 0, 0.2);
+    margin-top: 0.5rem;
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg, #fb8c00, #f57c00);
+    box-shadow: 0 6px 12px rgba(251, 140, 0, 0.3);
+    transform: translateY(-1px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  .errorMessage {
+    color: #d32f2f;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 0.8rem;
+    background-color: #ffebee;
+    border-radius: 8px;
+    border-left: 4px solid #d32f2f;
+  }
+  
+  /* Links */
+  a {
+    color: #ff8f00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: #e65100;
+    text-decoration: underline;
+  }
+  
+  /* Checkbox styling */
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 1.2rem 0;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.8rem;
+    accent-color: #ff8f00; /* Makes the checkbox match our theme */
+  }
+  
+  /* File input styling */
+  .file-input-wrapper {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+  
+  .file-input-wrapper input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+  
+  .file-input-label {
+    display: block;
+    padding: 0.9rem 1rem;
+    background-color: #fff3e0;
+    border: 2px dashed #ffcc80;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .file-input-label:hover {
+    background-color: #ffe0b2;
+    border-color: #ffa726;
+  }
+  
+  /* Additional visual elements */
+  .divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: #bdbdbd;
+  }
+  
+  .divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ffccbc;
+  }
+  
+  .divider::before {
+    margin-right: 1rem;
+  }
+  
+  .divider::after {
+    margin-left: 1rem;
+  }
