@@ -1,6 +1,3 @@
-Certainly! Here’s a project description you can use for your README:
-
----
 
 ## Dotify
 
