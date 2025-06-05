@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller,Query, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
@@ -10,15 +10,26 @@ export class SongsController {
 
   @Post()
   create(@Body() createSongDto: CreateSongDto) {
+    try{
     return this.songsService.createSong(createSongDto);
+    }catch(error){
+      console.error('Error creating song:', error.message);
+      throw new Error('Failed to create song: ' + error.message);
+    }
   }
 
   @Get()
   findAll() {
     return this.songsService.findAll();
-    //return 'Hello from SongsController!';
   }
 
+
+  @Get('search')
+    searchSongs(@Query('name') name: string) {
+    return this.songsService.findByName(name);
+  }  
+
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.songsService.findOne(id);
@@ -40,4 +51,8 @@ export class SongsController {
   remove(@Param('id') id: string) {
     return this.songsService.remove(id);
   }
+
+ 
+
+
 }

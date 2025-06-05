@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InstanceChecker, Repository, Like, ILike } from 'typeorm';
 import { Album } from './entities/album.entity';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
@@ -15,6 +15,10 @@ export class AlbumService {
 
   async create(createAlbumDto: CreateAlbumDto): Promise<Album> {
     const album = this.albumRepository.create(createAlbumDto);
+    const artist = new User();
+    artist.id = createAlbumDto.artistId;
+    album.artist = artist; 
+    
     return await this.albumRepository.save(album);
   }
 
@@ -50,4 +54,31 @@ export class AlbumService {
       throw new NotFoundException(`Album with ID ${id} not found`);
     }
   }
+
+
+  async findByArtist(artistId: string): Promise<Album[]> {
+    const artist = new User();
+    artist.id = artistId; 
+
+    const albums = await this.albumRepository.find({
+      where: { artist },
+      relations: ['artist', 'songs'],
+    });
+
+    if (!albums || albums.length === 0) {
+      throw new NotFoundException(`No albums found for artist with ID ${artistId}`);
+    }
+
+    return albums;
+  }
+
+
+  async findByName (name: string): Promise<Album[]> {
+      return this.albumRepository.find({
+        where: { title:  ILike(`%${name}%`) },
+        relations: ['artist', 'songs'],
+      });
+    }
+
+ 
 }

@@ -13,13 +13,13 @@ id: string;
 title: string;
 
 @OneToMany(type => Song, (song) => song.album)
-songs: Song[]; // Array of songs in the album
+songs: Song[]; 
 
 @ManyToOne(type => User, (user) => user.publishedAlbums, { cascade: true })
 artist: User; 
 
-@Column({ type: 'bytea'})
-coverArt: Buffer; 
+@Column()
+coverArt: string; 
 
 
 

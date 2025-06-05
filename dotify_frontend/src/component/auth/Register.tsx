@@ -24,7 +24,6 @@ const Register = () => {
       const file = e.target.files[0];
       setFormData({ ...formData, profilePicture: file });
       
-      // Create a preview of the image
       const reader = new FileReader();
       reader.onload = () => {
         setPreviewUrl(reader.result as string);
@@ -69,6 +68,8 @@ const Register = () => {
       const response = await api.post('/users/register', registrationData);
 
       localStorage.setItem('authToken', response.data.username);
+      localStorage.setItem('user', JSON.stringify(response.data));
+
       navigate(formData.isArtist ? '/artist-dashboard' : '/user-dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed');
@@ -115,7 +116,6 @@ const Register = () => {
           required
         />
         
-        {/* Hidden file input */}
         <input
           type="file"
           ref={fileInputRef}

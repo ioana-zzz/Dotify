@@ -36,10 +36,49 @@ export class UsersController {
         }
         return user;
     }
+    @Post(':id/like-song')
+    async likeSong(@Req() req) {
+        const userId = req.params.id;
+        const songId = req.body.songId; 
+        const user = await this.usersService.findOne(userId);
+        if (!user) {
+            throw new BadRequestException('User not found');
+        }
+        if (!user.id) {
+            throw new BadRequestException('User ID is missing');
+        }
+        return this.usersService.likeSong(user.id, songId);
+    }
+
+    @Post(':id/unlike-song')
+    async unlikeSong(@Req() req) {
+        const userId = req.params.id;
+        const songId = req.body.songId; 
+        const user = await this.usersService.findOne(userId);
+        if (!user) {
+            throw new BadRequestException('User not found');
+        }
+        if (!user.id) {
+            throw new BadRequestException('User ID is missing');
+        }
+        return this.usersService.unlikeSong(user.id, songId);
+    }
 
     @Post('findUser')
     getMe(username) {
         return this.usersService.findUserByUsername(username);
     }
+
+    @Get(':id/liked-songs')
+    async getLikedSongs(@Req() req) {
+        const userId = req.params.id;
+        const user = await this.usersService.findOne(userId);
+        if (!user) {
+            throw new BadRequestException('User not found');
+        }
+        return user.likedSongs; 
     
     }
+
+    
+}

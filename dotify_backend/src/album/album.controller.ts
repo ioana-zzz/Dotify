@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Query , NotFoundException} from '@nestjs/common';
 import { AlbumService } from './album.service';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
@@ -9,7 +9,9 @@ export class AlbumController {
 
   @Post()
   create(@Body() createAlbumDto: CreateAlbumDto) {
-    return this.albumService.create(createAlbumDto);
+   return this.albumService.create(createAlbumDto);
+  
+   
   }
 
   @Get()
@@ -17,10 +19,23 @@ export class AlbumController {
     return this.albumService.findAll();
   }
 
+  @Get('artist/:id')
+  findByArtist(@Param('id') artistId: string) {
+  return this.albumService.findByArtist(artistId);
+}
+
+  @Get('search')
+  searchSongs(@Query('name') name: string) {
+    return this.albumService.findByName(name);
+  }
+
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.albumService.findOne(id);
   }
+
+
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAlbumDto: UpdateAlbumDto) {
@@ -31,4 +46,8 @@ export class AlbumController {
   remove(@Param('id') id: string) {
     return this.albumService.remove(id);
   }
+
+
+
+
 }

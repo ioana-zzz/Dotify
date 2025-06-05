@@ -10,6 +10,7 @@ import { AlbumModule } from './album/album.module';
 import { Album } from './album/entities/album.entity'; // asigură-te că ai importat corect Album
 import { NamingStrategyNotFoundError } from 'typeorm';
 
+
 @Module({
   imports: [UsersModule,
     TypeOrmModule.forRoot({
@@ -24,6 +25,7 @@ import { NamingStrategyNotFoundError } from 'typeorm';
     }),
     SongsModule,
     AlbumModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

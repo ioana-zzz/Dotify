@@ -1,22 +1,30 @@
-import { IsEnum, IsOptional, IsString, IsUUID, IsNumber } from 'class-validator';
+import { IsEnum, IsOptional, IsString, IsUUID, IsNumber, IsBase64 } from 'class-validator';
 import { Genre } from '../entities/song.entity';
 import { User } from '../../users/entity/user.entity';
 import { Album } from '../../album/entities/album.entity';
 
 export class CreateSongDto {
-  artist: User;
+  @IsUUID()
+  artistId: string;
 
+  @IsUUID()
   @IsOptional()
-  album?: Album;
+  albumId: string;
 
   @IsString()
   title: string;
 
+  @IsOptional()
   @IsNumber()
   duration: number;
 
-  songData: Buffer;
+  @IsOptional()
+  coverArt: string;
 
+  @IsString()
+  songData: string;
+
+  @IsOptional()
   @IsEnum(Genre)
   genre: Genre;
 }

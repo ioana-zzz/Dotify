@@ -5,9 +5,7 @@ export class CreateAlbumDto {
   @IsString()
   title: string;
 
-  @IsOptional()
-  @IsString()
-  description?: string;
+
 
   @IsUUID()
   artistId: string;
@@ -15,4 +13,8 @@ export class CreateAlbumDto {
   @IsOptional()
   @IsEnum(Genre, { each: true })
   genres?: Genre[];
+
+  @IsOptional()
+  @IsString()
+  coverArt?: string;
 }

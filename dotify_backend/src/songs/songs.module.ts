@@ -11,6 +11,6 @@ import { User } from '../users/entity/user.entity'; // Import the User entity
   imports:[TypeOrmModule.forFeature([Song, Album, User])], 
   controllers: [SongsController],
   providers: [SongsService],
-  exports: [SongsService], // Export the service if you want to use it in other modules
+  exports: [SongsService], 
 })
 export class SongsModule {}

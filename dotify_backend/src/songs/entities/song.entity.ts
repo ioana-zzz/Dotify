@@ -23,12 +23,12 @@ export enum Genre{
 @Entity()
 export class Song {
 @PrimaryGeneratedColumn('uuid')
-id: string | undefined;
+id: string;
 
 @Column()
 title: string;
 
-@Column()
+@Column({nullable: true})
 duration: number;
 
 @ManyToOne(type => User, (user) => user.publishedSongs, { cascade: true })
@@ -37,14 +37,14 @@ artist : User
 @ManyToMany(type => User, (user) => user.likedSongs, { cascade: true })
 likedBy: User[];
 
-@ManyToOne(type => Album, (album) => album.songs, { cascade: true })
-album : Album
+@ManyToOne(type => Album, (album) => album.songs,  { onDelete: 'CASCADE' })
+album : Album;
 
-@Column({'type': 'bytea'})
-songData: Buffer;
+@Column()
+songData: string;
 
-@Column({type: 'enum', enum: Genre})
-genre: Genre
+@Column({type: 'enum', enum: Genre, nullable: true})    
+genre?: Genre | null;
 
 
 }

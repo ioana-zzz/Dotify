@@ -31,9 +31,9 @@ const Login: React.FC = () => {
 
       const user = response.data
      
-      localStorage.setItem('authToken', user.username);
+      sessionStorage.setItem('authToken', user.username);
+      sessionStorage.setItem('user', JSON.stringify(user));
 
-      //Redirect based on role (if needed)
       navigate(user.role === 'Artist' ? '/artist-dashboard' : '/user-dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed' + err.message);
